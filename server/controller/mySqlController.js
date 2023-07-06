@@ -35,10 +35,10 @@ const allService = {
 
 // 添加礼簿
 const addGift = (values) => {
-    let _sql = `insert into addGift set item_id=?, date=?, item_name=?, remark=?;`
+    let _sql = `insert into addGift set date=?, item_name=?, remark=?;`
     return allService.query(_sql, values)
 }
-
+ 
 module.exports = {
     addGift,
     
