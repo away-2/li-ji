@@ -35,11 +35,33 @@ const allService = {
 
 // 添加礼簿
 const addGift = (values) => {
-    let _sql = `insert into addGift set date=?, item_name=?, remark=?;`
+    let _sql = `insert into addGift set item_id=?, date=?, item_name=?, remark=?;`
     return allService.query(_sql, values)
+}
+
+// 查询礼簿信息
+const selectGift = () => {
+    let _sql = `select * from addGift;`
+    return allService.query(_sql)
+}
+
+// 添加礼簿item
+const addGiftItem = (values) => {
+  let _sql = `insert into addItem set item_id = ?, person_name = ?, item_money = ?, item_remark = ?;`
+  return allService.query(_sql, values)
+}
+
+// 查询礼簿item
+const selectGiftItem = (follow_id) =>{
+  let _sql = `select * from addItem where follow_id=${follow_id};`
+  return allService.query(_sql)
 }
  
 module.exports = {
     addGift,
+    selectGift,
+    addGiftItem,
+    selectGiftItem,
+
     
 }
