@@ -53,15 +53,27 @@ const addGiftItem = (values) => {
 
 // 查询礼簿item
 const selectGiftItem = (follow_id) =>{
-  let _sql = `select * from addItem where follow_id=${follow_id};`
+  let _sql = `select * from addItem where follow_id = ${follow_id};`
   return allService.query(_sql)
 }
- 
+
+// 修改礼簿item
+const updateGiftItem = (values) => {
+  let _sql = `update addItem set person_name = ?, item_money = ?, item_remark = ? where item_id = ?;`
+  return allService.query(_sql,values)
+}
+
+// 删除礼簿item
+const deleteGiftItem = () => {
+  let _sql = `delete from addItem where item_id = ?;`
+  return allService.query(_sql)
+}
 module.exports = {
     addGift,
     selectGift,
     addGiftItem,
     selectGiftItem,
-
-    
+    updateGiftItem,
+    deleteGiftItem,
+   
 }
