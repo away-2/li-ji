@@ -10,6 +10,8 @@ var cors = require('koa2-cors');
 const index = require('./routes/index')
 const users = require('./routes/users')
 const gift = require('./routes/gift')
+// const test = require('./routes/test')
+
 
 app.use(cors())
 
@@ -40,6 +42,8 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(gift.routes(), gift.allowedMethods())
+// app.use(test.routes(), test.allowedMethods())
+
 
 // error-handling
 app.on('error', (err, ctx) => {

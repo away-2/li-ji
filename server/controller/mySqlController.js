@@ -47,7 +47,7 @@ const selectGift = () => {
 
 // 添加礼簿item
 const addGiftItem = (values) => {
-  let _sql = `insert into addItem set item_id = ?, person_name = ?, item_money = ?, item_remark = ?;`
+  let _sql = `insert into addItem set item_id = ?, person_name = ?, item_money = ?, item_remark = ?, follow_id = ?;`
   return allService.query(_sql, values)
 }
 
@@ -60,7 +60,7 @@ const selectGiftItem = (follow_id) =>{
 }
 
 // 查询礼簿
-const selectGiftItemById = () =>{
+const selectGiftItemById = (title) =>{
   let _sql = `select addGift.item_id, item_name, person_name, item_money from addItem, addGift where addItem.follow_id = addGift.item_id;`
   return allService.query(_sql)
 }
@@ -73,7 +73,7 @@ const selectGiftItemByName = (person_name) =>{
 
 // 修改礼簿item
 const updateGiftItem = (values) => {
-  let _sql = `update addItem set person_name = ?, item_money = ?, item_remark = ? where item_id = ?;`
+  let _sql = `update addItem set person_name=?, item_money=?, item_remark=? where item_id=?;`
   return allService.query(_sql,values)
 }
 

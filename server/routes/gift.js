@@ -128,9 +128,9 @@ router.post('/selectGiftItem', async (ctx, next) => {
 
 // 根据item_id查询礼簿信息
 router.post('/selectGiftItemById', async (ctx, next) => {
-  const {item_id} = ctx.request.body
+  const {title} = ctx.request.body
   try {
-    const result = await userService.selectGiftItemById(item_id)
+    const result = await userService.selectGiftItemById(title)
     console.log(result);
     if (result.length) {
       ctx.body = {
@@ -184,13 +184,13 @@ router.post('/selectGiftItemByName', async (ctx, next) => {
 
 // 修改礼簿item信息
 router.post('/updateGiftItem', async (ctx, next) => {
-  const {
-    item_id
-  } = ctx.request.body
+  const {name, money, remark, item_id} = ctx.request.body
+  let arr = [name, money, remark, item_id]
+  console.log(arr);
   try {
-    const result = await userService.updateGiftItem(item_id)
+    const result = await userService.updateGiftItem(arr)
     console.log(result);
-    if (result.length) {
+    if (result.affectedRows) {
       ctx.body = {
         code: '80000',
         itemData: result,
@@ -220,7 +220,7 @@ router.post('/deleteGiftItem', async (ctx, next) => {
   try {
     const result = await userService.deleteGiftItem(item_id)
     console.log(result);
-    if (result.length) {
+    if (!result.length) {
       ctx.body = {
         code: '80000',
         itemData: result,
