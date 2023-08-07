@@ -66,8 +66,8 @@ const selectGiftItemById = (title) =>{
 }
 
 // 根据person_name查询礼簿item
-const selectGiftItemByName = (person_name) =>{
-  let _sql = `select * from addItem where person_name = ${person_name};`
+const selectGiftItemByName = () =>{
+  let _sql = `select * from addItem ;`
   return allService.query(_sql)
 }
 
@@ -82,6 +82,17 @@ const deleteGiftItem = () => {
   let _sql = `delete from addItem where item_id = ?;`
   return allService.query(_sql)
 }
+
+// 添加送礼信息
+const addGiftOut = (values) => {
+  let _sql = `insert into giftOut set id = ?, date = ?, name = ?, thing = ?, money = ?, remark = ?;`
+  return allService.query(_sql, values)
+}
+// 查看送礼item
+const selectGiftOut = () => {
+  let _sql = `select * from giftOut;`
+  return allService.query(_sql)
+}
 module.exports = {
     addGift,
     selectGift,
@@ -91,5 +102,6 @@ module.exports = {
     selectGiftItemByName,
     updateGiftItem,
     deleteGiftItem,
-   
+    addGiftOut,
+    selectGiftOut,
 }
