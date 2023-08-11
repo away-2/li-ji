@@ -12,10 +12,11 @@ router.post('/addGiftOut', async (ctx, next) => {
     name,
     thing,
     money,
-    remark
+    remark,
+    user_id
   } = ctx.request.body
   try {
-    const result = await userService.addGiftOut([ id, date, name, thing, money, remark])
+    const result = await userService.addGiftOut([ id, date, name, thing, money, remark, user_id])
     console.log(result);
     if (result.affectedRows !== 0) {
       ctx.body = {

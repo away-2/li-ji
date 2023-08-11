@@ -35,7 +35,7 @@ const allService = {
 
 // 添加礼簿
 const addGift = (values) => {
-    let _sql = `insert into addGift set item_id=?, date=?, item_name=?, remark=?;`
+    let _sql = `insert into addGift set item_id=?, date=?, item_name=?, remark=?,user_id=?;`
     return allService.query(_sql, values)
 }
 
@@ -47,7 +47,7 @@ const selectGift = () => {
 
 // 添加礼簿item
 const addGiftItem = (values) => {
-  let _sql = `insert into addItem set item_id = ?, person_name = ?, item_money = ?, item_remark = ?, follow_id = ?;`
+  let _sql = `insert into addItem set item_id = ?, name = ?, item_money = ?, item_remark = ?, follow_id = ?, user_id = ?;`
   return allService.query(_sql, values)
 }
 
@@ -61,7 +61,7 @@ const selectGiftItem = (follow_id) =>{
 
 // 查询礼簿
 const selectGiftItemById = (title) =>{
-  let _sql = `select addGift.item_id, item_name, person_name, item_money from addItem, addGift where addItem.follow_id = addGift.item_id;`
+  let _sql = `select addGift.item_id, item_name, name, item_money from addItem, addGift where addItem.follow_id = addGift.item_id;`
   return allService.query(_sql)
 }
 
@@ -73,7 +73,7 @@ const selectGiftItemByName = () =>{
 
 // 修改礼簿item
 const updateGiftItem = (values) => {
-  let _sql = `update addItem set person_name=?, item_money=?, item_remark=? where item_id=?;`
+  let _sql = `update addItem set name=?, item_money=?, item_remark=? where item_id=?;`
   return allService.query(_sql,values)
 }
 
@@ -85,12 +85,28 @@ const deleteGiftItem = () => {
 
 // 添加送礼信息
 const addGiftOut = (values) => {
-  let _sql = `insert into giftOut set id = ?, date = ?, name = ?, thing = ?, money = ?, remark = ?;`
+  let _sql = `insert into giftOut set id = ?, date = ?, name = ?, thing = ?, money = ?, remark = ?, user_id = ?;`
   return allService.query(_sql, values)
 }
 // 查看送礼item
 const selectGiftOut = () => {
   let _sql = `select * from giftOut;`
+  return allService.query(_sql)
+}
+
+// login
+const login = (username, password) => {
+  let _sql = `select * from user where username ="${username}" and password ="${password}";`
+  return allService.query(_sql)
+}
+// register
+const register = (values) => {
+  let _sql = `insert into user set username = ?, password = ?;`
+  return allService.query(_sql,values)
+}
+// 根据username查找用户信息
+const selectUser = (username) => {
+  let _sql = `select * from user where username = "${username}";`
   return allService.query(_sql)
 }
 module.exports = {
@@ -104,4 +120,7 @@ module.exports = {
     deleteGiftItem,
     addGiftOut,
     selectGiftOut,
+    login,
+    register,
+    selectUser,
 }

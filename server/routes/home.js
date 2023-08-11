@@ -10,11 +10,12 @@ router.post('/addGift', async (ctx, next) => {
     item_id,
     item_name,
     remark,
-    date
+    date,
+    user_id
   } = ctx.request.body
   // const date = utils.formateDate(new Date())
   try {
-    const result = await userService.addGift([item_id, date, item_name, remark])
+    const result = await userService.addGift([item_id, date, item_name, remark, user_id])
     // console.log(result);
     if (result.affectedRows !== 0) {
       ctx.body = {
@@ -69,12 +70,14 @@ router.post('/selectGift', async (ctx, next) => {
 router.post('/addGiftItem', async (ctx, next) => {
   const {
     item_id,
-    person_name,
+    name,
     item_money,
-    item_remark
+    item_remark,
+    follow_id,
+    user_id
   } = ctx.request.body
   try {
-    const result = await userService.addGiftItem([item_id, person_name, item_money, item_remark])
+    const result = await userService.addGiftItem([item_id, name, item_money, item_remark, follow_id, user_id])
     console.log(result);
     if (result.affectedRows !== 0) {
       ctx.body = {
@@ -156,7 +159,7 @@ router.post('/selectGiftItemById', async (ctx, next) => {
 
 // 根据person_name查询礼簿信息
 router.post('/selectGiftItemByName', async (ctx, next) => {
-  // const {person_name} = ctx.request.body
+  // const {name} = ctx.request.body
   try {
     const result = await userService.selectGiftItemByName()
     console.log(result);
@@ -184,8 +187,8 @@ router.post('/selectGiftItemByName', async (ctx, next) => {
 
 // 修改礼簿item信息
 router.post('/updateGiftItem', async (ctx, next) => {
-  const {name, money, remark, item_id} = ctx.request.body
-  let arr = [name, money, remark, item_id]
+  const {name, money, remark, item_id, user_id} = ctx.request.body
+  let arr = [name, money, remark, item_id, user_id]
   console.log(arr);
   try {
     const result = await userService.updateGiftItem(arr)
