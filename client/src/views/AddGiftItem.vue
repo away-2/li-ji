@@ -26,7 +26,7 @@
 
 <script setup>
 import Header from '../components/Header.vue'
-import { reactive } from 'vue'
+import { reactive, inject } from 'vue'
 import { useRouter,useRoute } from 'vue-router'
 import axios from '../api'
 
@@ -47,20 +47,20 @@ const toFriend = () => {
 }
 
 const submit = async() => {
-    console.log(state.name,state.money);
-    const result = await axios.post('/selectGift')
+    // const result = await axios.post('/selectGift')
     // console.log(result, '111111111');
-    let data = JSON.parse(sessionStorage.getItem('token'))
+    let data = JSON.parse(localStorage.getItem('token'))
     // console.log(data.id, '99999999');
+    let id = route.query.id
     const res = await axios.post('/addGiftItem', {
         name: state.name,
         item_money: state.money,
         item_remark: state.remark,
-        follow_id: result.data[0].item_id,
+        follow_id: id,
         user_id: data.id
     })
     if (res.code === '80000') {
-        router.push({path: '/giftItem'})
+        history.back()
     }
 }
 </script>

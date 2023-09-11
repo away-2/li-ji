@@ -54,7 +54,7 @@ const selectDate = (value) => {
 // 提交礼簿信息
 const submit = async() => {
     console.log(state.currentDate,state.item_name);
-    let data = JSON.parse(sessionStorage.getItem('token'))
+    let data = JSON.parse(localStorage.getItem('token'))
     const res = await axios.post('/addGift', {
         date: state.currentDate,
         item_name: state.item_name,

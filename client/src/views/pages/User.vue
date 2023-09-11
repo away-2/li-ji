@@ -69,7 +69,7 @@ const state = reactive({
 
 onMounted(async() =>{
     // 根据本地存储的token获取username
-    let data = JSON.parse(sessionStorage.getItem('token'))
+    let data = JSON.parse(localStorage.getItem('token'))
     if(!data){
         state.username
     } else {
@@ -116,7 +116,7 @@ const toLogin = () => {
             }
     }
     .body-wrap{
-        width: 350px;
+        width: 380px;
         height: 180px;
         background-color: #fff;
         border-radius: 25px;
@@ -124,7 +124,7 @@ const toLogin = () => {
         top: -200px;
         margin: 15px;
         .total-money{
-            width: 350px;
+            width: 380px;
             height: 80px;
             display: flex;
             justify-content: center;
@@ -183,7 +183,7 @@ const toLogin = () => {
         }
     }
     .setting-cell-one{
-        width: 350px;
+        width: 380px;
         height: 100px;
         background-color: #fff;
         border-radius: 25px;
@@ -202,7 +202,7 @@ const toLogin = () => {
             }
             .text{
                 font-size: 18px;
-                margin: 17px 175px 20px 10px;
+                margin: 17px 200px 20px 10px;
             }
             .van-icon{
                 margin-top: 15px;
@@ -210,7 +210,7 @@ const toLogin = () => {
         }
     }
     .setting-cell-two{
-        width: 350px;
+        width: 380px;
         height: 200px;
         background-color: #fff;
         border-radius: 25px;

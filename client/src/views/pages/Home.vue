@@ -51,18 +51,14 @@ const toAddGift = () => {
 }
 
 onMounted(async () => {  
-    let res = JSON.parse(sessionStorage.getItem('token'))
-    if(!res){
-        state.isLogin = false
-    }else{
-        const { data } = await axios.post('/selectGift')   
-        let newData = data.filter((item, index, data) => {
-            return item.user_id == res.id
-        }) 
-        //  console.log(newData,'??????');
-        state.allData = newData 
-        // state.totalThing = newData.length
-    }  
+    let res = JSON.parse(localStorage.getItem('token'))
+    const { data } = await axios.post('/selectGift')   
+    let newData = data.filter((item, index, data) => {
+        return item.user_id == res.id
+    }) 
+    //  console.log(newData,'??????');
+    state.allData = newData 
+  
 })
 
 const toGiftItem = (item) => {

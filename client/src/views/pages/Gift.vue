@@ -43,7 +43,7 @@ const state = reactive({
 })
 
 onMounted(async () => {
-    let res = JSON.parse(sessionStorage.getItem('token'))
+    let res = JSON.parse(localStorage.getItem('token'))
     if (!res) {
         state.isLogin = false
     } else {
@@ -86,7 +86,7 @@ const toDetail = () => {
 }
 
 .gift-out-content {
-    width: 350px;
+    width: 380px;
     height: 100px;
     background-color: #fff;
     position: relative;

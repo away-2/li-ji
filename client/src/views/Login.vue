@@ -87,7 +87,7 @@ const onSubmit = async() => {
 
     // console.log(res);
     if (res.code === '80000') {
-        sessionStorage.setItem('token', JSON.stringify(res.data))
+        localStorage.setItem('token', JSON.stringify(res.data))
         router.push({path: '/page/home'})
     }
   

@@ -82,7 +82,7 @@ const getThings = (title) => {
 
 const submit = async() => {
     // console.log(state.currentDate,state.item_name);
-    let data = JSON.parse(sessionStorage.getItem('token'))
+    let data = JSON.parse(localStorage.getItem('token'))
     const res = await axios.post('/addGiftOut', {
         date: state.currentDate,
         name: state.name,

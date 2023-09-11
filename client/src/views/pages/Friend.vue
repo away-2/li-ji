@@ -38,7 +38,7 @@ const state = reactive({
 })
 
 onMounted(async () => {
-  let res = JSON.parse(sessionStorage.getItem('token'))
+  let res = JSON.parse(localStorage.getItem('token'))
   if (!res) {
     state.isLogin = false
   } else {
