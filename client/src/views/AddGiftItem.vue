@@ -50,7 +50,7 @@ const submit = async() => {
     // const result = await axios.post('/selectGift')
     // console.log(result, '111111111');
     let data = JSON.parse(localStorage.getItem('token'))
-    // console.log(data.id, '99999999');
+    console.log(route.query.id, '99999999');
     let id = route.query.id
     const res = await axios.post('/addGiftItem', {
         name: state.name,
@@ -66,6 +66,7 @@ const submit = async() => {
 </script>
 
 <style lang="less" scoped>
+@import '../assets/style/custom.less';
 .input{
     position: relative;
     background-color: #fff;

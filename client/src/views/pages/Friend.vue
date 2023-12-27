@@ -2,6 +2,7 @@
   <div class="friend">
     <BgImg />
     <TopSearch />
+    <van-loading color="#f76664" v-show="state.loading" vertical size="40px" type="spinner"/>
     <div class="header-wrap">
       <div class="icon">
         <van-icon name="add-o" color="#f76664" size="35px" @click="toGift" />
@@ -34,7 +35,8 @@ import pinyin from 'js-pinyin'
 const router = useRouter()
 const filterData = ref([])
 const state = reactive({
-  isLogin: false
+  isLogin: false,
+  loading: false,
 })
 
 onMounted(async () => {
@@ -43,8 +45,10 @@ onMounted(async () => {
     state.isLogin = false
   } else {
     state.isLogin = true
+    state.loading = true
     const { Data } = await axios.post('/selectGiftItemByName')
     const { data } = await axios.post('/selectGiftOut')
+    state.loading = false
     let newArr = Data.concat(data)
     let newData = newArr.filter((item, index, newArr) => {
       return item.user_id == res.id
@@ -132,5 +136,12 @@ const toGift = () => {
       }
     }
   }
+}
+</style>
+<style>
+.van-loading--vertical{
+    position: fixed;
+    top: 350px;
+    left: 200px;
 }
 </style>

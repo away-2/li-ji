@@ -2,6 +2,7 @@
     <div class="home">
         <TopHidden :title="state.title"/>
         <BgImg />
+        <van-loading color="#f76664" v-show="state.loading" vertical size="40px" type="spinner"/>
         <div class="content">
             <div class="content-item" @click="toLogin">
                 <div class="content-item-add" @click="toAddGift">
@@ -43,7 +44,8 @@ const state = reactive({
     totalMoney: 0,
     title: '礼记',
     isLogin: true,
-
+    loading: false,
+    countData: "",
 })
 
 const toAddGift = () => {
@@ -51,14 +53,15 @@ const toAddGift = () => {
 }
 
 onMounted(async () => {  
+    state.loading = true
     let res = JSON.parse(localStorage.getItem('token'))
     const { data } = await axios.post('/selectGift')   
     let newData = data.filter((item, index, data) => {
         return item.user_id == res.id
     }) 
-    //  console.log(newData,'??????');
-    state.allData = newData 
-  
+     console.log(newData,'??????');
+    state.allData = newData
+    
 })
 
 const toGiftItem = (item) => {
@@ -104,9 +107,11 @@ const toGiftItem = (item) => {
                 .title {
                     font-size: 25px;
                     font-weight: bold;
+                    color: @primary;
                 }
                 .thing-number {
                     font-size: 15px;
+                    margin: 5px 0 40px 0;
                 }
                 .money-sum {
                     font-size: 20px;
@@ -115,5 +120,12 @@ const toGiftItem = (item) => {
             }
         }
     }
+}
+</style>
+<style>
+.van-loading--vertical{
+    position: fixed;
+    top: 350px;
+    left: 200px;
 }
 </style>

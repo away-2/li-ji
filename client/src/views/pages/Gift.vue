@@ -2,6 +2,7 @@
     <div class="gift">
         <BgImg />
         <TopSearch />
+    <van-loading color="#f76664" v-show="state.loading" vertical size="40px" type="spinner"/>
         <div class="header-wrap">
             <div class="icon">
                 <van-icon name="add-o" color="#f76664" size="35px" @click="toGift" />
@@ -39,7 +40,7 @@ const state = reactive({
     money: '',
     data: [],
     isLogin: false,
-
+    loading: false,
 })
 
 onMounted(async () => {
@@ -48,8 +49,10 @@ onMounted(async () => {
         state.isLogin = false
     } else {
         state.isLogin = true
+        state.loading = true
         // 查找giftOut信息
         const { data } = await axios.post('/selectGiftOut')
+        state.loading = false
         // console.log(route.query.id, '11111111');
         let newData = data.filter((item, index, data) => {
             return item.user_id == res.id
@@ -124,3 +127,11 @@ const toDetail = () => {
         margin: 40px;
     }
 }</style>
+
+<style>
+.van-loading--vertical{
+    position: fixed;
+    top: 350px;
+    left: 200px;
+}
+</style>
