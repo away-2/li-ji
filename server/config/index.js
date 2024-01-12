@@ -2,7 +2,7 @@ const config = {
     database: {
       DATABASE: 'liji',
       USERNAME: 'root',
-      PASSWORD: '123456',
+      PASSWORD: 'root',
       PORT: '3306',
       HOST: 'localhost'
     }
