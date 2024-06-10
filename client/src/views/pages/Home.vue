@@ -55,7 +55,8 @@ const toAddGift = () => {
 onMounted(async () => {  
     state.loading = true
     let res = JSON.parse(localStorage.getItem('token'))
-    const { data } = await axios.post('/selectGift')   
+    const { data } = await axios.post('/selectGift')
+    state.loading = false   
     let newData = data.filter((item, index, data) => {
         return item.user_id == res.id
     }) 
